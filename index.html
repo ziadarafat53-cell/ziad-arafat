@@ -1,0 +1,1844 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𝔃𝓲𝓪𝓭 𝓪𝓻𝓪𝓯𝓪𝓽 | موقع متعدد المهام</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-light: #818cf8;
+            --secondary: #ec4899;
+            --bg: #f8fafc;
+            --bg-card: #ffffff;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --transition: all 0.3s ease;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --sidebar-width: 280px;
+            --header-height: 70px;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --bg-card: #1e293b;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.3);
+        }
+
+        [data-color="blue"] { --primary: #3b82f6; --primary-light: #60a5fa; --secondary: #06b6d4; }
+        [data-color="green"] { --primary: #10b981; --primary-light: #34d399; --secondary: #f59e0b; }
+        [data-color="purple"] { --primary: #8b5cf6; --primary-light: #a78bfa; --secondary: #f472b6; }
+        [data-color="orange"] { --primary: #f97316; --primary-light: #fb923c; --secondary: #ef4444; }
+        [data-color="red"] { --primary: #ef4444; --primary-light: #f87171; --secondary: #f59e0b; }
+        [data-color="teal"] { --primary: #14b8a6; --primary-light: #2dd4bf; --secondary: #6366f1; }
+        [data-color="pink"] { --primary: #ec4899; --primary-light: #f472b6; --secondary: #8b5cf6; }
+        [data-color="gold"] { --primary: #f59e0b; --primary-light: #fbbf24; --secondary: #ef4444; }
+
+        /* ===== ANIMATED RAINBOW MODE ===== */
+        [data-animated="true"] {
+            --primary: #ff0000;
+            --primary-light: #ff7f00;
+            --secondary: #ffff00;
+            animation: rainbowShift 8s linear infinite;
+        }
+        [data-animated="true"] .card-icon,
+        [data-animated="true"] .timer-circle,
+        [data-animated="true"] .weather-card,
+        [data-animated="true"] .note-card,
+        [data-animated="true"] .calc-btn.operator,
+        [data-animated="true"] .btn-primary,
+        [data-animated="true"] .ads-bar {
+            animation: rainbowGradient 6s linear infinite;
+            background-size: 400% 400% !important;
+        }
+        [data-animated="true"] .logo {
+            animation: rainbowText 4s linear infinite;
+            background-size: 400% 400% !important;
+        }
+
+        @keyframes rainbowGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes rainbowText {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes rainbowShift {
+            0% { --primary: #ff0000; --primary-light: #ff7f00; --secondary: #ffff00; }
+            16.6% { --primary: #ff7f00; --primary-light: #ffff00; --secondary: #00ff00; }
+            33.3% { --primary: #ffff00; --primary-light: #00ff00; --secondary: #0000ff; }
+            50% { --primary: #00ff00; --primary-light: #0000ff; --secondary: #4b0082; }
+            66.6% { --primary: #0000ff; --primary-light: #4b0082; --secondary: #9400d3; }
+            83.3% { --primary: #4b0082; --primary-light: #9400d3; --secondary: #ff0000; }
+            100% { --primary: #9400d3; --primary-light: #ff0000; --secondary: #ff7f00; }
+        }
+
+        /* ===== PULSE ANIMATION ===== */
+        [data-animated="pulse"] {
+            --primary: #6366f1;
+            --primary-light: #818cf8;
+            --secondary: #ec4899;
+        }
+        [data-animated="pulse"] .card-icon,
+        [data-animated="pulse"] .timer-circle,
+        [data-animated="pulse"] .btn-primary {
+            animation: colorPulse 3s ease-in-out infinite;
+        }
+        @keyframes colorPulse {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(60deg); }
+        }
+
+        /* ===== WAVE ANIMATION ===== */
+        [data-animated="wave"] {
+            --primary: #06b6d4;
+            --primary-light: #3b82f6;
+            --secondary: #8b5cf6;
+        }
+        [data-animated="wave"] .card-icon,
+        [data-animated="wave"] .timer-circle,
+        [data-animated="wave"] .btn-primary {
+            animation: waveColors 5s ease-in-out infinite;
+        }
+        @keyframes waveColors {
+            0%, 100% { filter: hue-rotate(0deg) brightness(1); }
+            25% { filter: hue-rotate(30deg) brightness(1.1); }
+            50% { filter: hue-rotate(60deg) brightness(1); }
+            75% { filter: hue-rotate(30deg) brightness(0.9); }
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-family);
+            background: var(--bg);
+            color: var(--text);
+            transition: var(--transition);
+            min-height: 100vh;
+        }
+
+        /* ====== ADS BAR ====== */
+        .ads-bar {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.95rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .ads-bar::before {
+            content: '📢';
+            margin-left: 8px;
+        }
+        .ads-close {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+        .ads-close:hover { background: rgba(255,255,255,0.4); }
+
+        /* ====== PRAYER REMINDER MODAL ====== */
+        .prayer-modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        .prayer-modal-overlay.active { display: flex; }
+        .prayer-modal {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 2.5rem;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            border: 2px solid var(--primary);
+            animation: slideUp 0.4s ease;
+        }
+        .prayer-modal .mosque-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease infinite;
+        }
+        .prayer-modal h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        .prayer-modal .duaa {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 1.5rem 0;
+            color: var(--text);
+            line-height: 2;
+        }
+        .prayer-modal .prayer-times {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .prayer-time-item {
+            background: var(--bg);
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        .prayer-time-item .name { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem; }
+        .prayer-time-item .time { font-size: 1.2rem; font-weight: 700; color: var(--primary); }
+        .prayer-modal .close-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border: none;
+            padding: 0.875rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+        .prayer-modal .close-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ====== ADMIN LOGIN MODAL ====== */
+        .admin-modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .admin-modal-overlay.active { display: flex; }
+        .admin-modal {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 2.5rem;
+            max-width: 420px;
+            width: 90%;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.3);
+            border: 2px solid var(--primary);
+        }
+        .admin-modal h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+        .admin-modal .input-group {
+            margin-bottom: 1rem;
+        }
+        .admin-modal .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .admin-modal .input-group input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            background: var(--bg);
+            color: var(--text);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+        .admin-modal .input-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+        .admin-modal .login-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+            font-family: inherit;
+            margin-top: 0.5rem;
+        }
+        .admin-modal .login-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+        .admin-modal .error-msg {
+            color: #ef4444;
+            text-align: center;
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+            display: none;
+        }
+        .admin-modal .error-msg.active { display: block; }
+
+        /* ====== ADMIN PANEL ====== */
+        .admin-panel-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            z-index: 1500;
+            display: none;
+        }
+        .admin-panel-overlay.active { display: block; }
+        .admin-panel {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 400px;
+            max-width: 90%;
+            height: 100vh;
+            background: var(--bg-card);
+            border-right: 1px solid var(--border);
+            z-index: 1600;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+        .admin-panel.active { transform: translateX(0); }
+        .admin-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+        }
+        .admin-panel-header h2 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .admin-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .admin-close:hover { color: var(--primary); }
+
+        .admin-section {
+            margin-bottom: 2rem;
+        }
+        .admin-section h3 {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .admin-option {
+            margin-bottom: 1rem;
+        }
+        .admin-option label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .admin-option input, .admin-option textarea, .admin-option select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            background: var(--bg);
+            color: var(--text);
+            font-family: inherit;
+            transition: var(--transition);
+        }
+        .admin-option input:focus, .admin-option textarea:focus, .admin-option select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .admin-option textarea { min-height: 80px; resize: vertical; }
+        .admin-save-btn {
+            width: 100%;
+            padding: 0.875rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+        .admin-save-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+        }
+        .color-btn {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 10px;
+            border: 3px solid transparent;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .color-btn:hover { transform: scale(1.1); }
+        .color-btn.active { border-color: var(--text); }
+
+        .font-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .font-btn {
+            padding: 0.75rem;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            background: var(--bg);
+            color: var(--text);
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: right;
+            font-family: inherit;
+        }
+        .font-btn:hover, .font-btn.active {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        /* ====== HEADER ====== */
+        .header {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            padding: 0 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+        }
+        .header-content {
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            cursor: pointer;
+        }
+        .controls {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+        .btn-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            font-size: 1.1rem;
+            position: relative;
+        }
+        .btn-icon:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: scale(1.1);
+        }
+        .btn-icon .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--secondary);
+            color: white;
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ====== SIDEBAR ====== */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            min-height: calc(100vh - var(--header-height));
+        }
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--bg-card);
+            border-left: 1px solid var(--border);
+            padding: 1.5rem 1rem;
+            transition: var(--transition);
+            position: sticky;
+            top: var(--header-height);
+            height: calc(100vh - var(--header-height));
+            overflow-y: auto;
+        }
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.875rem 1.25rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .nav-item:hover, .nav-item.active {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            box-shadow: var(--shadow);
+        }
+        .nav-item i { font-size: 1.1rem; width: 24px; text-align: center; }
+
+        /* ====== MAIN ====== */
+        .main {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+        .section {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        .section.active { display: block; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .page-title i { color: var(--primary); }
+
+        /* ====== CARDS ====== */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.25rem;
+        }
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+        .card-title { font-size: 1.05rem; font-weight: 700; }
+        .card-desc { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem; line-height: 1.6; }
+
+        /* ====== TO-DO ====== */
+        .todo-input-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .input-field {
+            flex: 1;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            background: var(--bg);
+            color: var(--text);
+            font-size: 1rem;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+        .btn-primary {
+            padding: 0.875rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            opacity: 0.9;
+        }
+        .todo-list { list-style: none; }
+        .todo-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg);
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+        }
+        .todo-item:hover { border-color: var(--primary); }
+        .todo-checkbox {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            border: 2px solid var(--primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+        .todo-checkbox.checked {
+            background: var(--primary);
+            color: white;
+        }
+        .todo-text {
+            flex: 1;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        .todo-text.completed {
+            text-decoration: line-through;
+            color: var(--text-muted);
+        }
+        .todo-delete {
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 0.5rem;
+        }
+        .todo-delete:hover { color: #ef4444; }
+
+        /* ====== CALCULATOR ====== */
+        .calc-container {
+            max-width: 380px;
+            margin: 0 auto;
+        }
+        .calc-display {
+            background: var(--bg);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: left;
+            font-size: 2rem;
+            font-weight: 700;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            overflow-x: auto;
+            direction: ltr;
+        }
+        .calc-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
+        }
+        .calc-btn {
+            padding: 1.25rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+            font-family: inherit;
+        }
+        .calc-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.05);
+        }
+        .calc-btn.operator {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+        }
+        .calc-btn.equals {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            grid-column: span 2;
+        }
+        .calc-btn.clear { background: #ef4444; color: white; }
+
+        /* ====== NOTES ====== */
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        .note-card {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            color: white;
+            position: relative;
+            min-height: 180px;
+            transition: var(--transition);
+        }
+        .note-card:hover { transform: translateY(-4px) rotate(1deg); }
+        .note-card:nth-child(2n) { background: linear-gradient(135deg, var(--secondary), var(--primary)); }
+        .note-card:nth-child(3n) { background: linear-gradient(135deg, #f59e0b, #ef4444); }
+        .note-text {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            width: 100%;
+            height: 120px;
+            resize: none;
+            font-family: inherit;
+            outline: none;
+        }
+        .note-text::placeholder { color: rgba(255,255,255,0.7); }
+        .note-delete {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        .note-delete:hover { background: rgba(255,255,255,0.4); }
+        .note-date {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+
+        /* ====== POMODORO ====== */
+        .pomodoro-container {
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .timer-circle {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem auto;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+        .timer-circle::before {
+            content: '';
+            position: absolute;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            background: var(--bg-card);
+        }
+        .timer-display {
+            position: relative;
+            z-index: 1;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--text);
+            font-variant-numeric: tabular-nums;
+        }
+        .timer-label {
+            position: relative;
+            z-index: 1;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+        .timer-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        .timer-btn {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        .timer-btn:hover, .timer-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        .timer-mode {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        .mode-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+        .mode-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* ====== FILE UPLOAD ====== */
+        .upload-zone {
+            border: 3px dashed var(--border);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+            background: var(--bg);
+            margin-bottom: 1.5rem;
+        }
+        .upload-zone:hover, .upload-zone.dragover {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.05);
+        }
+        .upload-zone i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .upload-zone h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .upload-zone p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .file-list {
+            list-style: none;
+        }
+        .file-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg);
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+        .file-item:hover { border-color: var(--primary); }
+        .file-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+        }
+        .file-info { flex: 1; }
+        .file-name { font-weight: 600; font-size: 0.95rem; }
+        .file-size { color: var(--text-muted); font-size: 0.8rem; }
+        .file-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .file-action-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: none;
+            background: var(--bg-card);
+            color: var(--text);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+        }
+        .file-action-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* ====== WEATHER ====== */
+        .weather-card {
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            color: white;
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+        }
+        .weather-temp { font-size: 3rem; font-weight: 800; }
+        .weather-city { font-size: 1.2rem; opacity: 0.9; }
+        .weather-desc { font-size: 1rem; opacity: 0.8; margin-top: 0.5rem; }
+
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .sidebar {
+                width: 100%;
+                border-left: none;
+                border-bottom: 1px solid var(--border);
+                padding: 1rem;
+                position: static;
+                height: auto;
+            }
+            .nav-item { padding: 0.75rem 1rem; font-size: 0.9rem; }
+            .main { padding: 1rem; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .timer-circle { width: 200px; height: 200px; }
+            .timer-circle::before { width: 180px; height: 180px; }
+            .timer-display { font-size: 2.8rem; }
+            .admin-panel { width: 100%; max-width: 100%; }
+            .prayer-times { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+
+        /* ====== SCROLLBAR ====== */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary-light); }
+
+        /* ====== ANIMATIONS ====== */
+        .pulse { animation: pulse 2s infinite; }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body data-theme="light" data-color="blue">
+
+    <!-- ====== ADS BAR ====== -->
+    <div class="ads-bar" id="adsBar">
+        <span id="adsText">🌟 أهلاً بك في موقع 𝔃𝓲𝓪𝓭 𝓪𝓻𝓪𝓯𝓪𝓽 - موقع متعدد المهام بتصميم عصري!</span>
+        <button class="ads-close" onclick="closeAds()" title="إغلاق">×</button>
+    </div>
+
+    <!-- ====== PRAYER REMINDER MODAL ====== -->
+    <div class="prayer-modal-overlay" id="prayerModal">
+        <div class="prayer-modal">
+            <div class="mosque-icon">🕌</div>
+            <h2>تذكير بالصلاة على النبي ﷺ</h2>
+            <div class="duaa">
+                اللهم صلِّ وسلِّم وبارك على سيدنا محمد<br>
+                وعلى آله وصحبه أجمعين
+            </div>
+            <div class="prayer-times" id="prayerTimes">
+                <div class="prayer-time-item"><div class="name">الفجر</div><div class="time">4:30</div></div>
+                <div class="prayer-time-item"><div class="name">الظهر</div><div class="time">12:15</div></div>
+                <div class="prayer-time-item"><div class="name">العصر</div><div class="time">3:45</div></div>
+                <div class="prayer-time-item"><div class="name">المغرب</div><div class="time">6:50</div></div>
+                <div class="prayer-time-item"><div class="name">العشاء</div><div class="time">8:20</div></div>
+                <div class="prayer-time-item"><div class="name">الشروق</div><div class="time">5:45</div></div>
+            </div>
+            <button class="close-btn" onclick="closePrayerModal()">✨ صلِّ على النبي ﷺ</button>
+        </div>
+    </div>
+
+    <!-- ====== ADMIN LOGIN MODAL ====== -->
+    <div class="admin-modal-overlay" id="adminLoginModal">
+        <div class="admin-modal">
+            <h2>🔐 تسجيل دخول الأدمن</h2>
+            <div class="input-group"><label>اسم المستخدم</label><input type="text" id="adminUser" placeholder="admin" value="admin"></div>
+            <div class="input-group"><label>كلمة المرور</label><input type="password" id="adminPass" placeholder="أدخل كلمة المرور"></div>
+            <button class="login-btn" onclick="loginAdmin()">دخول</button>
+            <div class="error-msg" id="loginError">اسم المستخدم أو كلمة المرور غير صحيحة!</div>
+        </div>
+    </div>
+
+    <!-- ====== ADMIN PANEL ====== -->
+    <div class="admin-panel-overlay" id="adminPanelOverlay" onclick="closeAdminPanel()"></div>
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-panel-header">
+            <h2><i class="fas fa-cog"></i> لوحة التحكم</h2>
+            <button class="admin-close" onclick="closeAdminPanel()">×</button>
+        </div>
+
+        <div class="admin-section">
+            <h3>🎨 الألوان</h3>
+            <div class="color-grid">
+                <div class="color-btn active" style="background: linear-gradient(135deg, #3b82f6, #60a5fa);" onclick="adminSetColor('blue')" title="أزرق"></div>
+                <div class="color-btn" style="background: linear-gradient(135deg, #10b981, #34d399);" onclick="adminSetColor('green')" title="أخضر"></div>
+                <div class="color-btn" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa);" onclick="adminSetColor('purple')" title="بنفسجي"></div>
+                <div class="color-btn" style="background: linear-gradient(135deg, #f97316, #fb923c);" onclick="adminSetColor('orange')" title="برتقالي"></div>
+                <div class="color-btn" style="background: linear-gradient(135deg, #ef4444, #f87171);" onclick="adminSetColor('red')" title="أحمر"></div>
+                <div class="color-btn" style="background: linear-gradient(135deg, #14b8a6, #2dd4bf);" onclick="adminSetColor('teal')" title="فيروزي"></div>
+                <div class="color-btn" style="background: linear-gradient(135deg, #ec4899, #f472b6);" onclick="adminSetColor('pink')" title="وردي"></div>
+                <div class="color-btn" style="background: linear-gradient(135deg, #f59e0b, #fbbf24);" onclick="adminSetColor('gold')" title="ذهبي"></div>
+            </div>
+        </div>
+
+        <div class="admin-section">
+            <h3>✨ الألوان المتحركة</h3>
+            <div class="admin-option">
+                <label>نوع الحركة</label>
+                <select id="adminAnimated" onchange="adminSetAnimated(this.value)">
+                    <option value="none">بدون حركة</option>
+                    <option value="true">🌈 قوس قزح (Rainbow)</option>
+                    <option value="pulse">💓 نبض (Pulse)</option>
+                    <option value="wave">🌊 موجة (Wave)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="admin-section">
+            <h3>✏️ الخطوط</h3>
+            <div class="font-options">
+                <button class="font-btn active" onclick="adminSetFont('Segoe UI')" style="font-family: 'Segoe UI';">Segoe UI (افتراضي)</button>
+                <button class="font-btn" onclick="adminSetFont('Tahoma')" style="font-family: Tahoma;">Tahoma</button>
+                <button class="font-btn" onclick="adminSetFont('Arial')" style="font-family: Arial;">Arial</button>
+                <button class="font-btn" onclick="adminSetFont('Dubai')" style="font-family: Dubai;">Dubai</button>
+                <button class="font-btn" onclick="adminSetFont('Cairo')" style="font-family: Cairo;">Cairo</button>
+            </div>
+        </div>
+
+        <div class="admin-section">
+            <h3>📢 الإعلانات</h3>
+            <div class="admin-option">
+                <label>نص شريط الإعلانات</label>
+                <textarea id="adminAdsText" placeholder="اكتب نص الإعلان هنا...">🌟 أهلاً بك في موقع 𝔃𝓲𝓪𝓭 𝓪𝓻𝓪𝓯𝓪𝓽 - موقع متعدد المهام بتصميم عصري!</textarea>
+            </div>
+            <div class="admin-option">
+                <label>رابط الإعلان (اختياري)</label>
+                <input type="text" id="adminAdsLink" placeholder="https://...">
+            </div>
+            <button class="admin-save-btn" onclick="saveAdsSettings()">💾 حفظ الإعلان</button>
+        </div>
+
+        <div class="admin-section">
+            <h3>🕌 مواقيت الصلاة</h3>
+            <div class="admin-option"><label>المدينة</label><input type="text" id="adminCity" value="القاهرة" placeholder="اسم المدينة"></div>
+            <div class="admin-option"><label>الفجر</label><input type="text" id="adminFajr" value="4:30"></div>
+            <div class="admin-option"><label>الظهر</label><input type="text" id="adminDhuhr" value="12:15"></div>
+            <div class="admin-option"><label>العصر</label><input type="text" id="adminAsr" value="3:45"></div>
+            <div class="admin-option"><label>المغرب</label><input type="text" id="adminMaghrib" value="6:50"></div>
+            <div class="admin-option"><label>العشاء</label><input type="text" id="adminIsha" value="8:20"></div>
+            <button class="admin-save-btn" onclick="savePrayerSettings()">💾 حفظ المواقيت</button>
+        </div>
+
+        <div class="admin-section">
+            <h3>⚙️ إعدادات عامة</h3>
+            <div class="admin-option"><label>اسم الموقع</label><input type="text" id="adminSiteName" value="𝔃𝓲𝓪𝓭 𝓪𝓻𝓪𝓯𝓪𝓽"></div>
+            <div class="admin-option"><label>وصف الموقع</label><textarea id="adminSiteDesc" placeholder="وصف قصير...">موقع متعدد المهام بتصميم عصري</textarea></div>
+            <button class="admin-save-btn" onclick="saveGeneralSettings()">💾 حفظ الإعدادات</button>
+        </div>
+
+        <div class="admin-section">
+            <button class="admin-save-btn" style="background: #ef4444;" onclick="logoutAdmin()">🚪 تسجيل الخروج</button>
+        </div>
+    </div>
+
+    <!-- ====== HEADER ====== -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo" onclick="showPrayerModal()">𝔃𝓲𝓪𝓭 𝓪𝓻𝓪𝓯𝓪𝓽</div>
+            <div class="controls">
+                <button class="btn-icon" onclick="toggleColorPicker()" title="تغيير الألوان"><i class="fas fa-palette"></i></button>
+                <div class="color-picker" style="position: relative;">
+                    <div class="color-dropdown" id="colorDropdown" style="position: absolute; top: 50px; left: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 1rem; box-shadow: var(--shadow-lg); display: none; min-width: 200px; z-index: 200;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem; border-radius: 8px; cursor: pointer; transition: var(--transition);" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background='transparent'" onclick="setColor('blue')"><div style="width: 20px; height: 20px; border-radius: 50%; background: #3b82f6; border: 2px solid var(--border);"></div><span>أزرق</span></div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem; border-radius: 8px; cursor: pointer; transition: var(--transition);" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background='transparent'" onclick="setColor('green')"><div style="width: 20px; height: 20px; border-radius: 50%; background: #10b981; border: 2px solid var(--border);"></div><span>أخضر</span></div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem; border-radius: 8px; cursor: pointer; transition: var(--transition);" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background='transparent'" onclick="setColor('purple')"><div style="width: 20px; height: 20px; border-radius: 50%; background: #8b5cf6; border: 2px solid var(--border);"></div><span>بنفسجي</span></div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem; border-radius: 8px; cursor: pointer; transition: var(--transition);" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background='transparent'" onclick="setColor('orange')"><div style="width: 20px; height: 20px; border-radius: 50%; background: #f97316; border: 2px solid var(--border);"></div><span>برتقالي</span></div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem; border-radius: 8px; cursor: pointer; transition: var(--transition);" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background='transparent'" onclick="setColor('red')"><div style="width: 20px; height: 20px; border-radius: 50%; background: #ef4444; border: 2px solid var(--border);"></div><span>أحمر</span></div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem; border-radius: 8px; cursor: pointer; transition: var(--transition);" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background='transparent'" onclick="setColor('teal')"><div style="width: 20px; height: 20px; border-radius: 50%; background: #14b8a6; border: 2px solid var(--border);"></div><span>فيروزي</span></div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem; border-radius: 8px; cursor: pointer; transition: var(--transition);" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background='transparent'" onclick="setColor('pink')"><div style="width: 20px; height: 20px; border-radius: 50%; background: #ec4899; border: 2px solid var(--border);"></div><span>وردي</span></div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem; border-radius: 8px; cursor: pointer; transition: var(--transition);" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background='transparent'" onclick="setColor('gold')"><div style="width: 20px; height: 20px; border-radius: 50%; background: #f59e0b; border: 2px solid var(--border);"></div><span>ذهبي</span></div>
+                    </div>
+                </div>
+                <button class="btn-icon" onclick="toggleTheme()" title="الوضع الليلي/النهاري"><i class="fas fa-moon" id="themeIcon"></i></button>
+                <button class="btn-icon" onclick="showPrayerModal()" title="الصلاة على النبي ﷺ"><i class="fas fa-mosque"></i></button>
+                <button class="btn-icon" onclick="openAdminLogin()" title="لوحة التحكم"><i class="fas fa-user-shield"></i><span class="badge" id="adminBadge" style="display: none;">✓</span></button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- ====== SIDEBAR ====== -->
+        <nav class="sidebar">
+            <div class="nav-item active" onclick="showSection('home')"><i class="fas fa-home"></i><span>الرئيسية</span></div>
+            <div class="nav-item" onclick="showSection('todo')"><i class="fas fa-check-circle"></i><span>المهام</span></div>
+            <div class="nav-item" onclick="showSection('calc')"><i class="fas fa-calculator"></i><span>الحاسبة</span></div>
+            <div class="nav-item" onclick="showSection('notes')"><i class="fas fa-sticky-note"></i><span>الملاحظات</span></div>
+            <div class="nav-item" onclick="showSection('pomodoro')"><i class="fas fa-clock"></i><span>بومودورو</span></div>
+            <div class="nav-item" onclick="showSection('files')"><i class="fas fa-cloud-upload-alt"></i><span>الملفات</span></div>
+            <div class="nav-item" onclick="showSection('weather')"><i class="fas fa-cloud-sun"></i><span>الطقس</span></div>
+        </nav>
+
+        <!-- ====== MAIN ====== -->
+        <main class="main">
+            <!-- HOME -->
+            <section id="home" class="section active">
+                <h1 class="page-title"><i class="fas fa-home"></i> مرحباً بك في موقع <span id="siteNameDisplay">𝔃𝓲𝓪𝓭 𝓪𝓻𝓪𝓯𝓪𝓽</span></h1>
+                <p id="siteDescDisplay" style="color: var(--text-muted); margin-bottom: 2rem; font-size: 1.1rem;">موقع متعدد المهام بتصميم عصري</p>
+                <div class="cards-grid">
+                    <div class="card" onclick="showSection('todo')"><div class="card-header"><div class="card-icon"><i class="fas fa-check-circle"></i></div><div><div class="card-title">قائمة المهام</div><div class="card-desc">تنظيم مهامك اليومية</div></div></div><div class="card-desc">أضف مهامك، أكملها، واحذفها بسهولة.</div></div>
+                    <div class="card" onclick="showSection('calc')"><div class="card-header"><div class="card-icon"><i class="fas fa-calculator"></i></div><div><div class="card-title">حاسبة ذكية</div><div class="card-desc">حساباتك بسرعة</div></div></div><div class="card-desc">حاسبة علمية سهلة الاستخدام.</div></div>
+                    <div class="card" onclick="showSection('notes')"><div class="card-header"><div class="card-icon"><i class="fas fa-sticky-note"></i></div><div><div class="card-title">الملاحظات</div><div class="card-desc">دوّن أفكارك</div></div></div><div class="card-desc">دفتر ملاحظات رقمي ملون.</div></div>
+                    <div class="card" onclick="showSection('pomodoro')"><div class="card-header"><div class="card-icon"><i class="fas fa-clock"></i></div><div><div class="card-title">مؤقت بومودورو</div><div class="card-desc">زيادة الإنتاجية</div></div></div><div class="card-desc">25 دقيقة عمل، 5 دقيقة راحة.</div></div>
+                    <div class="card" onclick="showSection('files')"><div class="card-header"><div class="card-icon"><i class="fas fa-cloud-upload-alt"></i></div><div><div class="card-title">رفع الملفات</div><div class="card-desc">تخزين سحابي</div></div></div><div class="card-desc">ارفع ملفاتك وحفظها.</div></div>
+                    <div class="card" onclick="showSection('weather')"><div class="card-header"><div class="card-icon"><i class="fas fa-cloud-sun"></i></div><div><div class="card-title">حالة الطقس</div><div class="card-desc">تعرف على الطقس</div></div></div><div class="card-desc">معلومات الطقس الحالية.</div></div>
+                </div>
+            </section>
+
+            <!-- TO-DO -->
+            <section id="todo" class="section">
+                <h1 class="page-title"><i class="fas fa-check-circle"></i> قائمة المهام</h1>
+                <div class="todo-input-group">
+                    <input type="text" class="input-field" id="todoInput" placeholder="أضف مهمة جديدة..." onkeypress="if(event.key==='Enter') addTodo()">
+                    <button class="btn-primary" onclick="addTodo()"><i class="fas fa-plus"></i> إضافة</button>
+                </div>
+                <ul class="todo-list" id="todoList"></ul>
+            </section>
+
+            <!-- CALCULATOR -->
+            <section id="calc" class="section">
+                <h1 class="page-title"><i class="fas fa-calculator"></i> الحاسبة</h1>
+                <div class="calc-container">
+                    <div class="calc-display" id="calcDisplay">0</div>
+                    <div class="calc-buttons">
+                        <button class="calc-btn clear" onclick="clearCalc()">C</button>
+                        <button class="calc-btn operator" onclick="appendCalc('/')">÷</button>
+                        <button class="calc-btn operator" onclick="appendCalc('*')">×</button>
+                        <button class="calc-btn operator" onclick="deleteCalc()">⌫</button>
+                        <button class="calc-btn" onclick="appendCalc('7')">7</button>
+                        <button class="calc-btn" onclick="appendCalc('8')">8</button>
+                        <button class="calc-btn" onclick="appendCalc('9')">9</button>
+                        <button class="calc-btn operator" onclick="appendCalc('-')">−</button>
+                        <button class="calc-btn" onclick="appendCalc('4')">4</button>
+                        <button class="calc-btn" onclick="appendCalc('5')">5</button>
+                        <button class="calc-btn" onclick="appendCalc('6')">6</button>
+                        <button class="calc-btn operator" onclick="appendCalc('+')">+</button>
+                        <button class="calc-btn" onclick="appendCalc('1')">1</button>
+                        <button class="calc-btn" onclick="appendCalc('2')">2</button>
+                        <button class="calc-btn" onclick="appendCalc('3')">3</button>
+                        <button class="calc-btn operator" onclick="appendCalc('.')">.</button>
+                        <button class="calc-btn" onclick="appendCalc('0')">0</button>
+                        <button class="calc-btn equals" onclick="calculate()">=</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NOTES -->
+            <section id="notes" class="section">
+                <h1 class="page-title"><i class="fas fa-sticky-note"></i> الملاحظات</h1>
+                <div class="todo-input-group" style="max-width: 500px;">
+                    <input type="text" class="input-field" id="noteInput" placeholder="اكتب ملاحظة جديدة..." onkeypress="if(event.key==='Enter') addNote()">
+                    <button class="btn-primary" onclick="addNote()"><i class="fas fa-plus"></i> إضافة</button>
+                </div>
+                <div class="notes-grid" id="notesGrid"></div>
+            </section>
+
+            <!-- POMODORO -->
+            <section id="pomodoro" class="section">
+                <h1 class="page-title"><i class="fas fa-clock"></i> مؤقت بومودورو</h1>
+                <div class="pomodoro-container">
+                    <div class="timer-mode">
+                        <button class="mode-btn active" onclick="setTimerMode(25, 'work')">عمل (25د)</button>
+                        <button class="mode-btn" onclick="setTimerMode(5, 'short')">راحة قصيرة (5د)</button>
+                        <button class="mode-btn" onclick="setTimerMode(15, 'long')">راحة طويلة (15د)</button>
+                    </div>
+                    <div class="timer-circle">
+                        <div class="timer-display" id="timerDisplay">25:00</div>
+                        <div class="timer-label" id="timerLabel">جاهز للبدء!</div>
+                    </div>
+                    <div class="timer-controls">
+                        <button class="timer-btn active" id="startBtn" onclick="startTimer()"><i class="fas fa-play"></i> بدء</button>
+                        <button class="timer-btn" onclick="pauseTimer()"><i class="fas fa-pause"></i> إيقاف</button>
+                        <button class="timer-btn" onclick="resetTimer()"><i class="fas fa-redo"></i> إعادة</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FILES UPLOAD -->
+            <section id="files" class="section">
+                <h1 class="page-title"><i class="fas fa-cloud-upload-alt"></i> رفع الملفات</h1>
+                <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <h3>اسحب الملفات هنا أو اضغط للاختيار</h3>
+                    <p>الحد الأقصى: 50MB لكل ملف | التخزين: 5GB (محلي)</p>
+                    <input type="file" id="fileInput" multiple style="display: none;" onchange="handleFiles(this.files)">
+                </div>
+                <ul class="file-list" id="fileList"></ul>
+            </section>
+
+            <!-- WEATHER -->
+            <section id="weather" class="section">
+                <h1 class="page-title"><i class="fas fa-cloud-sun"></i> حالة الطقس</h1>
+                <div class="cards-grid">
+                    <div class="weather-card">
+                        <i class="fas fa-sun" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+                        <div class="weather-temp">28°C</div>
+                        <div class="weather-city">القاهرة، مصر</div>
+                        <div class="weather-desc">☀️ مشمس - رطوبة 45%</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-icon"><i class="fas fa-temperature-high"></i></div><div><div class="card-title">درجة الحرارة</div><div class="card-desc">القصوى والصغرى</div></div></div>
+                        <div style="display: flex; justify-content: space-around; margin-top: 1rem;">
+                            <div style="text-align: center;"><div style="font-size: 1.5rem; font-weight: 700; color: var(--secondary);">32°</div><div style="color: var(--text-muted); font-size: 0.9rem;">القصوى</div></div>
+                            <div style="text-align: center;"><div style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">22°</div><div style="color: var(--text-muted); font-size: 0.9rem;">الصغرى</div></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-icon"><i class="fas fa-wind"></i></div><div><div class="card-title">الرياح</div><div class="card-desc">سرعة واتجاه</div></div></div>
+                        <div style="text-align: center; margin-top: 1rem;"><div style="font-size: 2rem; font-weight: 700; color: var(--primary);">12 كم/س</div><div style="color: var(--text-muted); margin-top: 0.5rem;">شمال غربي</div></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+<script>
+        // ==================== ADMIN CONFIG ====================
+        const ADMIN_USERNAME = 'admin';
+        const ADMIN_PASSWORD = 'ziad2024';
+        let isAdmin = false;
+
+        // ==================== STORAGE KEYS ====================
+        const STORAGE_KEYS = {
+            theme: 'za_theme',
+            color: 'za_color',
+            font: 'za_font',
+            animated: 'za_animated',
+            todos: 'za_todos',
+            notes: 'za_notes',
+            files: 'za_files',
+            ads: 'za_ads',
+            prayers: 'za_prayers',
+            settings: 'za_settings',
+            admin: 'za_admin_session'
+        };
+
+        // ==================== THEME & COLOR ====================
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.getElementById('themeIcon');
+            const newTheme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+            icon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            localStorage.setItem(STORAGE_KEYS.theme, newTheme);
+        }
+
+        function toggleColorPicker() {
+            document.getElementById('colorDropdown').classList.toggle('active');
+        }
+
+        function setColor(color) {
+            document.body.setAttribute('data-color', color);
+            localStorage.setItem(STORAGE_KEYS.color, color);
+            document.getElementById('colorDropdown').classList.remove('active');
+        }
+
+        // Close color picker when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.color-picker') && !e.target.closest('.btn-icon')) {
+                document.getElementById('colorDropdown').classList.remove('active');
+            }
+        });
+
+        // ==================== LOAD SAVED PREFERENCES ====================
+        function loadPreferences() {
+            const savedTheme = localStorage.getItem(STORAGE_KEYS.theme) || 'light';
+            const savedColor = localStorage.getItem(STORAGE_KEYS.color) || 'blue';
+            const savedFont = localStorage.getItem(STORAGE_KEYS.font) || 'Segoe UI';
+            const savedAnimated = localStorage.getItem(STORAGE_KEYS.animated) || 'none';
+
+            document.body.setAttribute('data-theme', savedTheme);
+            document.body.setAttribute('data-color', savedColor);
+            document.body.style.setProperty('--font-family', savedFont + ', Tahoma, Geneva, Verdana, sans-serif');
+
+            if (savedAnimated !== 'none') {
+                document.body.setAttribute('data-animated', savedAnimated);
+            }
+
+            if (savedTheme === 'dark') {
+                document.getElementById('themeIcon').className = 'fas fa-sun';
+            }
+        }
+        loadPreferences();
+
+        // ==================== NAVIGATION ====================
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+
+            // Find and activate the nav item
+            document.querySelectorAll('.nav-item').forEach(item => {
+                if (item.getAttribute('onclick').includes("'" + sectionId + "'")) {
+                    item.classList.add('active');
+                }
+            });
+        }
+
+        // ==================== PRAYER MODAL ====================
+        function showPrayerModal() {
+            document.getElementById('prayerModal').classList.add('active');
+        }
+
+        function closePrayerModal() {
+            document.getElementById('prayerModal').classList.remove('active');
+        }
+
+        // Auto show prayer modal every 30 minutes
+        setInterval(() => {
+            showPrayerModal();
+        }, 30 * 60 * 1000);
+
+        // ==================== ADS BAR ====================
+        function closeAds() {
+            document.getElementById('adsBar').style.display = 'none';
+        }
+
+        function loadAds() {
+            const savedAds = JSON.parse(localStorage.getItem(STORAGE_KEYS.ads) || '{}');
+            if (savedAds.text) {
+                document.getElementById('adsText').textContent = savedAds.text;
+            }
+        }
+        loadAds();
+
+        // ==================== ADMIN LOGIN ====================
+        function openAdminLogin() {
+            if (isAdmin) {
+                openAdminPanel();
+                return;
+            }
+            document.getElementById('adminLoginModal').classList.add('active');
+            document.getElementById('loginError').classList.remove('active');
+        }
+
+        function loginAdmin() {
+            const user = document.getElementById('adminUser').value;
+            const pass = document.getElementById('adminPass').value;
+
+            if (user === ADMIN_USERNAME && pass === ADMIN_PASSWORD) {
+                isAdmin = true;
+                localStorage.setItem(STORAGE_KEYS.admin, 'true');
+                document.getElementById('adminLoginModal').classList.remove('active');
+                document.getElementById('adminBadge').style.display = 'flex';
+                openAdminPanel();
+            } else {
+                document.getElementById('loginError').classList.add('active');
+            }
+        }
+
+        function checkAdminSession() {
+            if (localStorage.getItem(STORAGE_KEYS.admin) === 'true') {
+                isAdmin = true;
+                document.getElementById('adminBadge').style.display = 'flex';
+            }
+        }
+        checkAdminSession();
+
+        // ==================== ADMIN PANEL ====================
+        function openAdminPanel() {
+            document.getElementById('adminPanelOverlay').classList.add('active');
+            document.getElementById('adminPanel').classList.add('active');
+            loadAdminSettings();
+        }
+
+        function closeAdminPanel() {
+            document.getElementById('adminPanelOverlay').classList.remove('active');
+            document.getElementById('adminPanel').classList.remove('active');
+        }
+
+        function logoutAdmin() {
+            isAdmin = false;
+            localStorage.removeItem(STORAGE_KEYS.admin);
+            document.getElementById('adminBadge').style.display = 'none';
+            closeAdminPanel();
+        }
+
+        function loadAdminSettings() {
+            // Load saved settings into admin panel
+            const savedAds = JSON.parse(localStorage.getItem(STORAGE_KEYS.ads) || '{}');
+            const savedPrayers = JSON.parse(localStorage.getItem(STORAGE_KEYS.prayers) || '{}');
+            const savedSettings = JSON.parse(localStorage.getItem(STORAGE_KEYS.settings) || '{}');
+
+            if (savedAds.text) document.getElementById('adminAdsText').value = savedAds.text;
+            if (savedAds.link) document.getElementById('adminAdsLink').value = savedAds.link;
+
+            if (savedPrayers.city) document.getElementById('adminCity').value = savedPrayers.city;
+            if (savedPrayers.fajr) document.getElementById('adminFajr').value = savedPrayers.fajr;
+            if (savedPrayers.dhuhr) document.getElementById('adminDhuhr').value = savedPrayers.dhuhr;
+            if (savedPrayers.asr) document.getElementById('adminAsr').value = savedPrayers.asr;
+            if (savedPrayers.maghrib) document.getElementById('adminMaghrib').value = savedPrayers.maghrib;
+            if (savedPrayers.isha) document.getElementById('adminIsha').value = savedPrayers.isha;
+
+            if (savedSettings.siteName) document.getElementById('adminSiteName').value = savedSettings.siteName;
+            if (savedSettings.siteDesc) document.getElementById('adminSiteDesc').value = savedSettings.siteDesc;
+        }
+
+        // ==================== ADMIN FUNCTIONS ====================
+        function adminSetColor(color) {
+            document.body.setAttribute('data-color', color);
+            localStorage.setItem(STORAGE_KEYS.color, color);
+            document.querySelectorAll('.color-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function adminSetAnimated(value) {
+            if (value === 'none') {
+                document.body.removeAttribute('data-animated');
+            } else {
+                document.body.setAttribute('data-animated', value);
+            }
+            localStorage.setItem(STORAGE_KEYS.animated, value);
+        }
+
+        function adminSetFont(font) {
+            document.body.style.setProperty('--font-family', font + ', Tahoma, Geneva, Verdana, sans-serif');
+            localStorage.setItem(STORAGE_KEYS.font, font);
+            document.querySelectorAll('.font-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function saveAdsSettings() {
+            const adsData = {
+                text: document.getElementById('adminAdsText').value,
+                link: document.getElementById('adminAdsLink').value
+            };
+            localStorage.setItem(STORAGE_KEYS.ads, JSON.stringify(adsData));
+            document.getElementById('adsText').textContent = adsData.text;
+            alert('✅ تم حفظ إعدادات الإعلانات!');
+        }
+
+        function savePrayerSettings() {
+            const prayerData = {
+                city: document.getElementById('adminCity').value,
+                fajr: document.getElementById('adminFajr').value,
+                dhuhr: document.getElementById('adminDhuhr').value,
+                asr: document.getElementById('adminAsr').value,
+                maghrib: document.getElementById('adminMaghrib').value,
+                isha: document.getElementById('adminIsha').value
+            };
+            localStorage.setItem(STORAGE_KEYS.prayers, JSON.stringify(prayerData));
+
+            // Update prayer modal
+            const times = document.querySelectorAll('.prayer-time-item .time');
+            times[0].textContent = prayerData.fajr;
+            times[1].textContent = prayerData.dhuhr;
+            times[2].textContent = prayerData.asr;
+            times[3].textContent = prayerData.maghrib;
+            times[4].textContent = prayerData.isha;
+
+            alert('✅ تم حفظ مواقيت الصلاة!');
+        }
+
+        function saveGeneralSettings() {
+            const settings = {
+                siteName: document.getElementById('adminSiteName').value,
+                siteDesc: document.getElementById('adminSiteDesc').value
+            };
+            localStorage.setItem(STORAGE_KEYS.settings, JSON.stringify(settings));
+            document.getElementById('siteNameDisplay').textContent = settings.siteName;
+            document.getElementById('siteDescDisplay').textContent = settings.siteDesc;
+            alert('✅ تم حفظ الإعدادات العامة!');
+        }
+
+        // ==================== TO-DO LIST ====================
+        let todos = JSON.parse(localStorage.getItem(STORAGE_KEYS.todos)) || [];
+
+        function renderTodos() {
+            const list = document.getElementById('todoList');
+            list.innerHTML = todos.map((todo, index) => `
+                <li class="todo-item">
+                    <div class="todo-checkbox ${todo.completed ? 'checked' : ''}" onclick="toggleTodo(${index})">
+                        ${todo.completed ? '<i class="fas fa-check"></i>' : ''}
+                    </div>
+                    <span class="todo-text ${todo.completed ? 'completed' : ''}">${todo.text}</span>
+                    <i class="fas fa-trash todo-delete" onclick="deleteTodo(${index})"></i>
+                </li>
+            `).join('');
+        }
+
+        function addTodo() {
+            const input = document.getElementById('todoInput');
+            const text = input.value.trim();
+            if (text) {
+                todos.push({ text, completed: false });
+                localStorage.setItem(STORAGE_KEYS.todos, JSON.stringify(todos));
+                input.value = '';
+                renderTodos();
+            }
+        }
+
+        function toggleTodo(index) {
+            todos[index].completed = !todos[index].completed;
+            localStorage.setItem(STORAGE_KEYS.todos, JSON.stringify(todos));
+            renderTodos();
+        }
+
+        function deleteTodo(index) {
+            todos.splice(index, 1);
+            localStorage.setItem(STORAGE_KEYS.todos, JSON.stringify(todos));
+            renderTodos();
+        }
+
+        renderTodos();
+
+        // ==================== CALCULATOR ====================
+        let calcExpression = '';
+
+        function appendCalc(val) {
+            if (calcExpression === '0' && val !== '.') calcExpression = '';
+            calcExpression += val;
+            document.getElementById('calcDisplay').textContent = calcExpression || '0';
+        }
+
+        function clearCalc() {
+            calcExpression = '';
+            document.getElementById('calcDisplay').textContent = '0';
+        }
+
+        function deleteCalc() {
+            calcExpression = calcExpression.slice(0, -1);
+            document.getElementById('calcDisplay').textContent = calcExpression || '0';
+        }
+
+        function calculate() {
+            try {
+                calcExpression = eval(calcExpression).toString();
+                document.getElementById('calcDisplay').textContent = calcExpression;
+            } catch {
+                document.getElementById('calcDisplay').textContent = 'خطأ';
+                calcExpression = '';
+            }
+        }
+
+        // ==================== NOTES ====================
+        let notes = JSON.parse(localStorage.getItem(STORAGE_KEYS.notes)) || [];
+
+        function renderNotes() {
+            const grid = document.getElementById('notesGrid');
+            grid.innerHTML = notes.map((note, index) => `
+                <div class="note-card">
+                    <button class="note-delete" onclick="deleteNote(${index})"><i class="fas fa-times"></i></button>
+                    <textarea class="note-text" onblur="updateNote(${index}, this.value)" placeholder="اكتب ملاحظتك...">${note.text}</textarea>
+                    <div class="note-date">${note.date}</div>
+                </div>
+            `).join('');
+        }
+
+        function addNote() {
+            const input = document.getElementById('noteInput');
+            const text = input.value.trim();
+            if (text) {
+                const date = new Date().toLocaleDateString('ar-EG');
+                notes.push({ text, date });
+                localStorage.setItem(STORAGE_KEYS.notes, JSON.stringify(notes));
+                input.value = '';
+                renderNotes();
+            }
+        }
+
+        function updateNote(index, text) {
+            notes[index].text = text;
+            localStorage.setItem(STORAGE_KEYS.notes, JSON.stringify(notes));
+        }
+
+        function deleteNote(index) {
+            notes.splice(index, 1);
+            localStorage.setItem(STORAGE_KEYS.notes, JSON.stringify(notes));
+            renderNotes();
+        }
+
+        renderNotes();
+
+        // ==================== POMODORO TIMER ====================
+        let timerInterval;
+        let timeLeft = 25 * 60;
+        let isRunning = false;
+        let currentMode = 'work';
+
+        function formatTime(seconds) {
+            const m = Math.floor(seconds / 60);
+            const s = seconds % 60;
+            return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+        }
+
+        function updateTimerDisplay() {
+            document.getElementById('timerDisplay').textContent = formatTime(timeLeft);
+        }
+
+        function setTimerMode(minutes, mode) {
+            pauseTimer();
+            timeLeft = minutes * 60;
+            currentMode = mode;
+            updateTimerDisplay();
+
+            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const labels = { work: 'وقت العمل! ركز جيداً', short: 'راحة قصيرة... استرخِ', long: 'راحة طويلة... استمتع' };
+            document.getElementById('timerLabel').textContent = labels[mode];
+        }
+
+        function startTimer() {
+            if (isRunning) return;
+            isRunning = true;
+            document.getElementById('startBtn').classList.add('active');
+            document.getElementById('timerLabel').textContent = currentMode === 'work' ? 'جاري العمل... ركز!' : 'استرخِ واستمتع بالراحة';
+
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                if (timeLeft <= 0) {
+                    pauseTimer();
+                    alert(currentMode === 'work' ? 'انتهى وقت العمل! استرخِ قليلاً 🎉' : 'انتهت الراحة! استعد للعمل 💪');
+                    timeLeft = currentMode === 'work' ? 25 * 60 : (currentMode === 'short' ? 5 * 60 : 15 * 60);
+                    updateTimerDisplay();
+                }
+            }, 1000);
+        }
+
+        function pauseTimer() {
+            isRunning = false;
+            clearInterval(timerInterval);
+            document.getElementById('startBtn').classList.remove('active');
+            document.getElementById('timerLabel').textContent = 'متوقف مؤقتاً';
+        }
+
+        function resetTimer() {
+            pauseTimer();
+            timeLeft = currentMode === 'work' ? 25 * 60 : (currentMode === 'short' ? 5 * 60 : 15 * 60);
+            updateTimerDisplay();
+            document.getElementById('timerLabel').textContent = 'جاهز للبدء!';
+        }
+
+        updateTimerDisplay();
+
+        // ==================== FILE UPLOAD ====================
+        let files = JSON.parse(localStorage.getItem(STORAGE_KEYS.files)) || [];
+
+        function handleFiles(fileList) {
+            Array.from(fileList).forEach(file => {
+                if (file.size > 50 * 1024 * 1024) {
+                    alert('❌ الملف كبير جداً! الحد الأقصى 50MB');
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const fileData = {
+                        name: file.name,
+                        size: formatFileSize(file.size),
+                        type: file.type,
+                        data: e.target.result,
+                        date: new Date().toLocaleDateString('ar-EG')
+                    };
+                    files.push(fileData);
+                    localStorage.setItem(STORAGE_KEYS.files, JSON.stringify(files));
+                    renderFiles();
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+            return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+        }
+
+        function getFileIcon(type) {
+            if (type.includes('image')) return 'fa-image';
+            if (type.includes('pdf')) return 'fa-file-pdf';
+            if (type.includes('video')) return 'fa-video';
+            if (type.includes('audio')) return 'fa-music';
+            if (type.includes('zip') || type.includes('rar')) return 'fa-file-archive';
+            return 'fa-file';
+        }
+
+        function renderFiles() {
+            const list = document.getElementById('fileList');
+            list.innerHTML = files.map((file, index) => `
+                <li class="file-item">
+                    <div class="file-icon"><i class="fas ${getFileIcon(file.type)}"></i></div>
+                    <div class="file-info">
+                        <div class="file-name">${file.name}</div>
+                        <div class="file-size">${file.size} | ${file.date}</div>
+                    </div>
+                    <div class="file-actions">
+                        <button class="file-action-btn" onclick="downloadFile(${index})" title="تحميل"><i class="fas fa-download"></i></button>
+                        <button class="file-action-btn" onclick="deleteFile(${index})" title="حذف"><i class="fas fa-trash"></i></button>
+                    </div>
+                </li>
+            `).join('');
+        }
+
+        function downloadFile(index) {
+            const file = files[index];
+            const a = document.createElement('a');
+            a.href = file.data;
+            a.download = file.name;
+            a.click();
+        }
+
+        function deleteFile(index) {
+            files.splice(index, 1);
+            localStorage.setItem(STORAGE_KEYS.files, JSON.stringify(files));
+            renderFiles();
+        }
+
+        // Drag and drop
+        const uploadZone = document.getElementById('uploadZone');
+        uploadZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadZone.classList.add('dragover');
+        });
+        uploadZone.addEventListener('dragleave', () => {
+            uploadZone.classList.remove('dragover');
+        });
+        uploadZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadZone.classList.remove('dragover');
+            handleFiles(e.dataTransfer.files);
+        });
+
+        renderFiles();
+
+        // ==================== KEYBOARD SHORTCUTS ====================
+        document.addEventListener('keydown', (e) => {
+            // Escape to close modals
+            if (e.key === 'Escape') {
+                closePrayerModal();
+                closeAdminPanel();
+                document.getElementById('adminLoginModal').classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
